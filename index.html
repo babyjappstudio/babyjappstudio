@@ -1,10 +1,431 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <title>BabyJApps</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BabyJApps — Simple, fun iOS games</title>
+  <meta name="description" content="BabyJApps builds simple, fun iOS games and utilities. Play, learn, and enjoy bite-sized experiences." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="BabyJApps — Simple, fun iOS games" />
+  <meta property="og:description" content="Simple, fun iOS games and utilities." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.09);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --border: rgba(255,255,255,.14);
+      --accent: #7c5cff;
+      --accent2: #20e3b2;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; }
+    body{
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(124,92,255,.35), transparent 60%),
+        radial-gradient(900px 500px at 85% 20%, rgba(32,227,178,.25), transparent 60%),
+        radial-gradient(700px 500px at 60% 90%, rgba(255,165,0,.10), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container{
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    header{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 8px 0 24px;
+    }
+
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+
+    .logo{
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    nav{
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero{
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      align-items: center;
+      padding: 18px 0 10px;
+    }
+
+    @media (max-width: 860px){
+      .hero{ grid-template-columns: 1fr; }
+    }
+
+    .hero-card{
+      background: linear-gradient(180deg, var(--card2), var(--card));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    h1{
+      margin: 0 0 10px;
+      font-size: 44px;
+      line-height: 1.08;
+      letter-spacing: -0.6px;
+    }
+    @media (max-width: 520px){
+      h1{ font-size: 36px; }
+    }
+
+    .subtitle{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 56ch;
+    }
+
+    .cta-row{
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 650;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .btn:hover{ background: rgba(255,255,255,.10); text-decoration: none; }
+
+    .btn.primary{
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #061018;
+    }
+    .btn.primary:hover{ filter: brightness(1.03); }
+
+    .pill{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+
+    .grid{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+    @media (max-width: 860px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .feature{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .feature h3{
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+    .feature p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .side{
+      display: grid;
+      gap: 14px;
+    }
+
+    .mini-card{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      border-radius: 22px;
+      padding: 18px;
+    }
+
+    .mini-card h2{
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+    .mini-card p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .apps{
+      margin-top: 22px;
+    }
+
+    .apps h2{
+      margin: 0 0 10px;
+      font-size: 22px;
+      letter-spacing: -0.2px;
+    }
+
+    .app-list{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 860px){
+      .app-list{ grid-template-columns: 1fr; }
+    }
+
+    .app{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      border-radius: 18px;
+      padding: 16px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .app-icon{
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(124,92,255,.9), rgba(32,227,178,.8));
+      flex: none;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      color: #061018;
+    }
+
+    .app h3{
+      margin: 0 0 4px;
+      font-size: 16px;
+    }
+    .app p{
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .app .links{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: rgba(255,255,255,.78);
+      font-size: 13px;
+    }
+
+    footer{
+      margin-top: 28px;
+      padding: 18px 0 12px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .small{
+      font-size: 12px;
+      color: rgba(255,255,255,.62);
+    }
+
+    /* Simple anchor offset for sticky-ish header */
+    section{ scroll-margin-top: 80px; }
+  </style>
 </head>
+
 <body>
-  <h1>BabyJApps</h1>
-  <p>Simple iOS apps and games.</p>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">BJ</div>
+        <div>
+          <div>BabyJApps</div>
+          <div class="small">Simple, fun iOS apps</div>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#apps">Apps</a>
+        <a href="#support">Support</a>
+        <a href="#privacy">Privacy</a>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <div class="hero-card">
+        <div class="pill">✨ Bite-sized games • Kid-friendly options • No server needed</div>
+        <h1>Simple, fun iOS games you can pick up instantly.</h1>
+        <p class="subtitle">
+          BabyJApps builds lightweight games and utilities designed for quick sessions.
+          Free versions may include ads, with an option to remove ads and unlock extras.
+        </p>
+
+        <div class="cta-row">
+          <!-- Replace with your App Store developer page or a specific app link -->
+          <a class="btn primary" href="#apps">Explore apps</a>
+          <a class="btn" href="mailto:support@yourdomain.com">Email support</a>
+        </div>
+
+        <div class="grid" aria-label="features">
+          <div class="feature">
+            <h3>Fast & lightweight</h3>
+            <p>Designed to load quickly and feel great on iPhone and iPad.</p>
+          </div>
+          <div class="feature">
+            <h3>Friendly UX</h3>
+            <p>Clear, simple interactions—great for kids and adults.</p>
+          </div>
+          <div class="feature">
+            <h3>Transparent monetization</h3>
+            <p>Ads where appropriate, with a simple “Remove Ads” option.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="side">
+        <div class="mini-card">
+          <h2>Need `app-ads.txt`?</h2>
+          <p>
+            Your `app-ads.txt` should live at:
+            <br />
+            <span class="small"><strong>https://yourdomain.com/app-ads.txt</strong></span>
+          </p>
+          <p class="small" style="margin-top:10px;">
+            Tip: Keep it plain text, at the root, returning HTTP 200.
+          </p>
+        </div>
+
+        <div class="mini-card" id="support">
+          <h2>Support</h2>
+          <p>
+            For help, refunds, or account questions:
+            <br />
+            <a href="mailto:babjappstudio@outlook.com"><strong>babjappstudio@outlook.com</strong></a>
+          </p>
+          <p class="small" style="margin-top:10px;">
+            Replace the email above with your real support address.
+          </p>
+        </div>
+
+        <div class="mini-card" id="privacy">
+          <h2>Privacy</h2>
+          <p>
+            We aim to collect the minimum required to run the app and improve quality.
+            Add your Privacy Policy page link below.
+          </p>
+          <p class="small" style="margin-top:10px;">
+            <a href="/privacy.html">View Privacy Policy →</a>
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <section class="apps" id="apps">
+      <h2>Apps</h2>
+
+      <div class="app-list">
+        <!-- Duplicate these blocks for each app -->
+        <div class="app">
+          <div class="app-icon">CT</div>
+          <div>
+            <h3>Color Tap</h3>
+            <p>A quick reflex game with simple rules and satisfying feedback.</p>
+            <div class="links">
+              <!-- Replace # with the real App Store link -->
+              <a href="#" aria-label="Color Tap App Store link">App Store</a>
+              <span>•</span>
+              <a href="/support.html">Support</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="app">
+          <div class="app-icon">TL</div>
+          <div>
+            <h3>Timeline Trivia</h3>
+            <p>Arrange historical events in order and test your timeline intuition.</p>
+            <div class="links">
+              <a href="#" aria-label="Timeline Trivia App Store link">App Store</a>
+              <span>•</span>
+              <a href="/support.html">Support</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="small" style="margin-top:12px;">
+        Replace the app names, descriptions, and App Store links with your real ones.
+      </p>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> BabyJApps</div>
+      <div class="small">
+        <a href="/privacy.html">Privacy</a> •
+        <a href="/support.html">Support</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

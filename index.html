@@ -229,12 +229,10 @@
     }
 
     .app-list{
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
       gap: 14px;
-    }
-    @media (max-width: 860px){
-      .app-list{ grid-template-columns: 1fr; }
     }
 
     .app-link{

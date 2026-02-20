@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Color Tap — BabyJAppStudio</title>
+  <meta name="description" content="Color Tap: a quick reflex game with simple rules and satisfying feedback. Download for iOS and Android." />
+
+  <meta property="og:title" content="Color Tap — BabyJAppStudio" />
+  <meta property="og:description" content="A quick reflex game with simple rules and satisfying feedback." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.09);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --border: rgba(255,255,255,.14);
+      --accent: #7c5cff;
+      --accent2: #20e3b2;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; }
+    html { height: 100%; }
+    body{
+      margin: 0;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(124,92,255,.35), transparent 60%),
+        radial-gradient(900px 500px at 85% 20%, rgba(32,227,178,.25), transparent 60%),
+        radial-gradient(700px 500px at 60% 90%, rgba(255,165,0,.10), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container{
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 8px 0 24px;
+    }
+
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+
+    .logo{
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    nav{
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .app-page{
+      flex: 1;
+      margin-top: 10px;
+    }
+
+    .app-header{
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+
+    .app-page .app-icon{
+      width: 96px;
+      height: 96px;
+      border-radius: 22px;
+      object-fit: cover;
+      flex: none;
+    }
+
+    .app-page h1{
+      margin: 0 0 8px;
+      font-size: 32px;
+      letter-spacing: -0.4px;
+    }
+
+    .app-page .tagline{
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .app-card{
+      background: linear-gradient(180deg, var(--card2), var(--card));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+      margin-bottom: 24px;
+    }
+
+    .app-card h2{
+      margin: 0 0 14px;
+      font-size: 18px;
+    }
+
+    .app-card p{
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .store-links{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .store-btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-width: 200px;
+      padding: 14px 20px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      font-weight: 650;
+      font-size: 15px;
+      box-sizing: border-box;
+    }
+    .store-btn:hover{ background: rgba(255,255,255,.12); text-decoration: none; }
+
+    .store-btn.primary{
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #061018;
+    }
+    .store-btn.primary:hover{ filter: brightness(1.03); }
+
+    .store-btn img{
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+
+    .store-btn--disabled{
+      cursor: not-allowed;
+      opacity: 0.6;
+      pointer-events: none;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .store-btn--disabled .coming-soon{
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    .app-card .secondary-links{
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .app-card .secondary-links a:hover{ color: var(--text); }
+
+    footer{
+      margin-top: 28px;
+      padding: 18px 0 12px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .small{ font-size: 12px; color: rgba(255,255,255,.62); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="/" class="brand">
+        <div class="logo">BJS</div>
+        <div>
+          <div>BabyJAppStudio</div>
+          <div class="small">Simple, fun mobile apps</div>
+        </div>
+      </a>
+      <nav>
+        <a href="/#apps">Apps</a>
+        <a href="/support.html">Support</a>
+        <a href="/privacy.html">Privacy</a>
+      </nav>
+    </header>
+
+    <main class="app-page">
+      <div class="app-header">
+        <img class="app-icon" src="../assets/images/color-tap-icon.png" alt="Color Tap app icon" />
+        <div>
+          <h1>Color Tap</h1>
+          <p class="tagline">A quick reflex game with simple rules and satisfying feedback.</p>
+        </div>
+      </div>
+
+      <div class="app-card">
+        <h2>Download</h2>
+        <p>Get Color Tap on your device. Free to play with optional in-app purchases.</p>
+        <div class="store-links">
+          <a href="https://apps.apple.com/us/app/color-tap-brain-reflex-game/id6758314812" class="store-btn primary" aria-label="Download Color Tap on the App Store">
+            <img src="../assets/images/icons8-app-store-50.png" alt="" width="24" height="24" /> App Store
+          </a>
+          <span class="store-btn store-btn--disabled" aria-disabled="true">
+            <span><img src="../assets/images/icons8-google-play-50.png" alt="" width="24" height="24" /> Google Play</span>
+            <span class="coming-soon">Coming soon...</span>
+          </span>
+        </div>
+        <div class="secondary-links">
+          <a href="/support.html">Support</a>
+          ·
+          <a href="/privacy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> BabyJAppStudio</div>
+      <div class="small">
+        <a href="/privacy.html">Privacy</a> ·
+        <a href="/support.html">Support</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

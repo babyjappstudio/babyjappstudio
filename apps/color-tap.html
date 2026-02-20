@@ -172,8 +172,8 @@
     .store-btn.primary:hover{ filter: brightness(1.03); }
 
     .store-btn img{
-      width: 24px;
-      height: 24px;
+      width: 32px;
+      height: 32px;
       object-fit: contain;
     }
 
@@ -182,7 +182,14 @@
       opacity: 0.6;
       pointer-events: none;
       flex-direction: column;
+      align-items: flex-start;
       gap: 4px;
+    }
+
+    .store-btn--disabled > span:first-child{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .store-btn--disabled .coming-soon{
@@ -248,10 +255,10 @@
         <p>Get Color Tap on your device. Free to play with optional in-app purchases.</p>
         <div class="store-links">
           <a href="https://apps.apple.com/us/app/color-tap-brain-reflex-game/id6758314812" class="store-btn primary" aria-label="Download Color Tap on the App Store">
-            <img src="../assets/images/icons8-app-store-50.png" alt="" width="24" height="24" /> App Store
+            <img src="../assets/images/icons8-app-store-100.png" alt="" width="32" height="32" /> App Store
           </a>
           <span class="store-btn store-btn--disabled" aria-disabled="true">
-            <span><img src="../assets/images/icons8-google-play-50.png" alt="" width="24" height="24" /> Google Play</span>
+            <span><img src="../assets/images/icons8-google-play-100.png" alt="" width="32" height="32" /> Google Play</span>
             <span class="coming-soon">Coming soon...</span>
           </span>
         </div>

@@ -49,19 +49,26 @@ html {
   height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Solid fallback so there is never a tonal gap beside the viewport-fixed body layer */
+  background-color: var(--bg-base);
 }
 
 body {
   margin: 0;
   min-height: 100%;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   font-family: var(--font);
   color: var(--text);
   line-height: 1.55;
+  /* Single continuous canvas: gradient is tied to the viewport, not document length */
   background-color: var(--bg-base);
-  background-image: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-base) 42%),
-    radial-gradient(ellipse 100% 80% at 50% -15%, rgba(107, 158, 255, 0.06), transparent 55%);
+  background-image: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-base) 100%),
+    radial-gradient(ellipse 100% 80% at 50% -15%, rgba(107, 158, 255, 0.055), transparent 55%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 a {
@@ -187,7 +194,12 @@ main.hero {
 }
 
 .hero-card {
-  background: linear-gradient(165deg, rgba(20, 24, 32, 0.97) 0%, rgba(14, 17, 23, 0.92) 100%);
+  /* Slightly elevated surface only—stays close to page tone so no “second background” seam */
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.045) 0%,
+    rgba(255, 255, 255, 0.018) 100%
+  );
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: var(--space-10) var(--space-8) var(--space-8);
@@ -389,6 +401,9 @@ main.hero {
 section.apps {
   margin-top: var(--space-12);
   padding-top: 0;
+  background: transparent;
+  /* Subtle separation from hero without a different section fill */
+  border-top: 1px solid var(--border-hairline);
 }
 
 .apps h2 {
@@ -426,7 +441,8 @@ section.apps {
 
 .app {
   border: 1px solid var(--border-hairline);
-  background: rgba(255, 255, 255, 0.02);
+  /* Match page luminance—cards read as floating rows, not a darker band */
+  background: rgba(255, 255, 255, 0.028);
   border-radius: var(--radius-lg);
   padding: var(--space-6) var(--space-5);
   display: flex;
@@ -436,7 +452,7 @@ section.apps {
 }
 
 .app-link:hover .app {
-  background: rgba(255, 255, 255, 0.045);
+  background: rgba(255, 255, 255, 0.05);
   border-color: var(--border);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
 }
@@ -809,6 +825,18 @@ main:not(.hero) {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* Avoid scroll-linked luminance bands: uniform base + soft top glow only */
+  body {
+    background-attachment: scroll;
+    background-color: var(--bg-base);
+    background-image: radial-gradient(
+      ellipse 100% 80% at 50% -15%,
+      rgba(107, 158, 255, 0.04),
+      transparent 55%
+    );
+    background-size: auto;
+  }
+
   a,
   .btn,
   .btn.primary,

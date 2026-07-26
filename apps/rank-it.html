@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rank It: Sorting Trivia — BabyJAppStudio</title>
+  <meta name="description" content="Rank It: Sorting Trivia — sort facts in the right order. Download for iOS and Android." />
+
+  <meta property="og:title" content="Rank It: Sorting Trivia — BabyJAppStudio" />
+  <meta property="og:description" content="Sort facts in the right order." />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="../site.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="https://babyjappstudio.com/" class="brand">
+        <div class="logo">BJS</div>
+        <div>
+          <div>BabyJAppStudio</div>
+          <div class="small">Simple, fun mobile apps</div>
+        </div>
+      </a>
+      <nav>
+        <a href="/#apps">Apps</a>
+        <a href="mailto:babyjappstudio@outlook.com">Support</a>
+        <a href="https://babyjappstudio.com/privacy">Privacy</a>
+      </nav>
+    </header>
+
+    <main class="app-page">
+      <div class="app-header">
+        <img class="app-icon" src="../assets/images/rankit_icon.png" alt="Rank It: Sorting Trivia app icon" />
+        <div>
+          <h1>Rank It: Sorting Trivia</h1>
+          <p class="tagline">Sort facts in the right order.</p>
+        </div>
+      </div>
+
+      <div class="app-card">
+        <h2>Download</h2>
+        <p>Get Rank It on your device. Free to play with optional in-app purchases.</p>
+        <div class="store-links">
+          <span class="store-btn store-btn--disabled" aria-disabled="true">
+            <span><img src="../assets/images/icons8-app-store-100.png" alt="" width="32" height="32" /> App Store</span>
+            <span class="coming-soon">Coming soon...</span>
+          </span>
+          <span class="store-btn store-btn--disabled" aria-disabled="true">
+            <span><img src="../assets/images/icons8-google-play-100.png" alt="" width="32" height="32" /> Google Play</span>
+            <span class="coming-soon">Coming soon...</span>
+          </span>
+        </div>
+        <div class="secondary-links">
+          <a href="mailto:babyjappstudio@outlook.com">Support</a>
+          ·
+          <a href="https://babyjappstudio.com/privacy">Privacy Policy</a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> BabyJAppStudio</div>
+      <div class="small">
+        <a href="https://babyjappstudio.com/privacy">Privacy</a> ·
+        <a href="mailto:babyjappstudio@outlook.com">Support</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

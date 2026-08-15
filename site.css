@@ -150,6 +150,13 @@ header {
   letter-spacing: 0.04em;
   color: var(--text);
   flex-shrink: 0;
+  object-fit: contain;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+img.logo {
+  display: block;
 }
 
 nav {

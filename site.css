@@ -1,4 +1,4 @@
-/* BabyJAppStudio — shared minimal dark theme */
+/* BabyJ App Studio — shared minimal dark theme */
 
 :root {
   --bg-base: #0a0c0f;
@@ -184,24 +184,20 @@ nav a:hover {
 /* Home — hero */
 
 main.hero {
-  flex: 1;
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: var(--space-8);
-  align-items: start;
+  flex: 0 0 auto;
+  display: block;
   padding: var(--space-10) 0 var(--space-6);
 }
 
 @media (max-width: 860px) {
   main.hero {
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
     padding-top: var(--space-8);
   }
 }
 
 .hero-card {
   /* Slightly elevated surface only—stays close to page tone so no “second background” seam */
+  max-width: 42rem;
   background: linear-gradient(
     165deg,
     rgba(255, 255, 255, 0.045) 0%,
@@ -242,7 +238,7 @@ main.hero {
   line-height: 1.08;
   letter-spacing: -0.038em;
   font-weight: 650;
-  max-width: 18ch;
+  max-width: 22ch;
   text-wrap: balance;
 }
 
@@ -318,8 +314,13 @@ main.hero {
   margin-top: var(--space-10);
 }
 
+.grid-4 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 @media (max-width: 860px) {
-  .grid {
+  .grid,
+  .grid-4 {
     grid-template-columns: 1fr;
     gap: var(--space-3);
     margin-top: var(--space-8);
@@ -403,13 +404,25 @@ main.hero {
   color: var(--accent);
 }
 
-/* Apps section */
+/* Section titles */
 
-section.apps {
+.section-title {
+  margin: 0 0 var(--space-6);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* Apps / products section */
+
+section.apps,
+section.values,
+section.support-section {
   margin-top: var(--space-12);
-  padding-top: 0;
+  padding-top: var(--space-12);
   background: transparent;
-  /* Subtle separation from hero without a different section fill */
   border-top: 1px solid var(--border-hairline);
 }
 
@@ -420,6 +433,87 @@ section.apps {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-tertiary);
+}
+
+.product-kicker {
+  display: block;
+  margin: 0 0 var(--space-2);
+  color: var(--text-tertiary);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.featured-product {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-6);
+  align-items: start;
+  margin-bottom: var(--space-4);
+  padding: var(--space-8) var(--space-6);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  box-shadow: var(--shadow-md), var(--shadow-inset-top);
+}
+
+@media (max-width: 640px) {
+  .featured-product {
+    grid-template-columns: 1fr;
+    padding: var(--space-6);
+  }
+}
+
+.featured-product .app-icon {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+}
+
+.featured-product h3 {
+  margin: 0 0 var(--space-3);
+  font-size: clamp(1.45rem, 2.6vw, 1.85rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.featured-product .featured-lead {
+  margin: 0 0 var(--space-3);
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 550;
+  letter-spacing: -0.015em;
+  line-height: 1.4;
+}
+
+.featured-product p {
+  margin: 0 0 var(--space-5);
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.58;
+  max-width: 58ch;
+}
+
+.values .grid,
+.support-section .grid {
+  margin-top: 0;
+}
+
+.support-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+@media (max-width: 720px) {
+  .support-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .app-list {
@@ -551,7 +645,11 @@ footer a:hover {
   letter-spacing: 0.01em;
 }
 
-section {
+section,
+#get,
+#support,
+#products,
+#privacy {
   scroll-margin-top: 88px;
 }
 
@@ -673,6 +771,239 @@ main:not(.hero) {
   color: var(--text-tertiary);
   font-size: 14px;
   font-style: italic;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Product landing (AliasTrail) */
+
+.byline {
+  margin: 0 0 var(--space-4);
+  color: var(--text-tertiary);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.byline a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.byline a:hover {
+  color: var(--accent);
+  border-bottom-color: rgba(107, 158, 255, 0.35);
+  text-decoration: none;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 800px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+.step {
+  padding: var(--space-5);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.028);
+}
+
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-bottom: var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.step h3 {
+  margin: 0 0 var(--space-2);
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.step p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.58;
+}
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+@media (max-width: 720px) {
+  .plan-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.plan {
+  padding: var(--space-6);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.028);
+}
+
+.plan.plan-pro {
+  border-color: var(--border);
+  background: linear-gradient(
+    165deg,
+    rgba(107, 158, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+}
+
+.plan h3 {
+  margin: 0 0 var(--space-2);
+  font-size: 18px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.plan .plan-note {
+  margin: 0 0 var(--space-4);
+  color: var(--text-tertiary);
+  font-size: 13px;
+}
+
+.plan ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.plan li {
+  margin-bottom: var(--space-2);
+}
+
+.plan li:last-child {
+  margin-bottom: 0;
+}
+
+.shot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+@media (max-width: 720px) {
+  .shot-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.shot {
+  min-height: 220px;
+  padding: var(--space-5);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-lg);
+  background: var(--surface-subtle);
+}
+
+.shot-label {
+  margin: 0 0 var(--space-4);
+  color: var(--text-tertiary);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.shot-frame {
+  min-height: 150px;
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.shot-line {
+  height: 10px;
+  margin-bottom: 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.shot-line.wide {
+  width: 72%;
+}
+
+.shot-line.mid {
+  width: 54%;
+}
+
+.shot-line.short {
+  width: 38%;
+}
+
+.shot-chip {
+  display: inline-flex;
+  margin-top: var(--space-2);
+  padding: 5px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.legal-note {
+  margin: var(--space-4) 0 0;
+  color: var(--text-tertiary);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.app-page .feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+@media (max-width: 720px) {
+  .app-page .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.app-page .feature-grid .feature {
+  margin: 0;
+}
+
+.app-page .feature h3 {
+  font-size: 16px;
 }
 
 /* App detail page (color-tap) */
@@ -853,7 +1184,10 @@ main:not(.hero) {
   .feature,
   .app,
   .brand,
-  .mini-card {
+  .mini-card,
+  .featured-product,
+  .step,
+  .plan {
     transition: none;
   }
 

@@ -725,7 +725,8 @@ main:not(.hero) {
   margin-top: var(--space-12);
 }
 
-.content-card ul {
+.content-card ul,
+.content-card ol {
   margin: 0 0 var(--space-6);
   padding-left: 1.25rem;
   color: rgba(255, 255, 255, 0.56);
@@ -756,6 +757,35 @@ main:not(.hero) {
 
 .content-card a:hover {
   color: #8cb4ff;
+}
+
+.content-card a.btn,
+.content-card a.btn:hover {
+  color: var(--accent-on-accent);
+  text-decoration: none;
+}
+
+.delete-account-identity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.delete-account-identity .app-icon {
+  width: 56px;
+  height: 56px;
+}
+
+.delete-account-identity .byline {
+  margin-bottom: 2px;
+}
+
+.delete-account-identity strong {
+  display: block;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .content-card strong {
